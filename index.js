@@ -1,10 +1,20 @@
 const http = require("http");
 const fs = require("fs");
+const path = require("path");
 
 http
   .createServer(function (req, res) {
     const q = new URL(req.url, `http://${req.headers.host}`); // takes the full URL
-    const filename = "." + q.pathname; // takes the pathname from the URL and adds the '.' to it
+    let pathname = q.pathname; // takes the pathname from the URL and adds the '.' to it
+
+    // if the pathname is empty, it returns the index.html file
+    if (pathname === "/") {
+      pathname = "/index.html";
+
+      // if the file doesn't exist then it adds .html to the pathname and then add the '.' to it.
+    } else if (!path.extname(pathname)) pathname += ".html";
+
+    const filename = "." + pathname;
 
     // reads the file, if the file doesn't exist, it returns a 404 error in html format
     // and if it does, it returns the file
