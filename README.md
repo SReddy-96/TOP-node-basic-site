@@ -53,4 +53,4 @@ To clone this project to your local machine, follow these steps:
    ```bash
    node index.js
    ```
-5. Open your browser and navigate to http://localhost:8080(or the port specified in your server file).
+5. Open your browser and navigate to http://localhost:8080 (or the port specified in your server file).
